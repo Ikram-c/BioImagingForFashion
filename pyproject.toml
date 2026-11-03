@@ -1,0 +1,36 @@
+[project]
+name = "src"
+version = "0.2.0"
+description = "Hardened OWASP & UK/EU GDPR Elliptical Fourier Descriptor pipeline with SAIKASI editorial UI and Flutter API."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24.0",
+    "opencv-python-headless>=4.8.0",
+    "scikit-image>=0.21.0",
+    "pandas>=2.0.0",
+    "pillow>=10.0.0",
+    "pyyaml>=6.0.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.22.0",
+    "python-multipart>=0.0.6",
+    "httpx>=0.24.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "mypy>=1.5.0",
+    "ruff>=0.1.0",
+]
+
+[tool.ruff]
+line-length = 79
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]

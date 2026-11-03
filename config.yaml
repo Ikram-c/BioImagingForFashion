@@ -1,0 +1,78 @@
+pipeline:
+  num_harmonics: 10
+  min_area: 500.0
+  normalize_efd: true
+  gaussian_blur_kernel:
+    - 5
+    - 5
+  morphology_kernel_size:
+    - 5
+    - 5
+  morphology_iterations: 2
+  max_items_per_image: 100
+  stages:
+    - "preprocess_segment"
+    - "extract_contours"
+    - "compute_descriptors"
+
+fourier:
+  max_contour_points: 10000
+  max_harmonics_allowed: 50
+  zero_displacement_epsilon: 0.0000000001
+  min_contour_points: 3
+
+security:
+  max_upload_bytes: 5242880
+  max_image_width: 4096
+  max_image_height: 4096
+  max_image_pixels: 16777216
+  allowed_schemes:
+    - "http"
+    - "https"
+  allowed_hosts:
+    - "127.0.0.1"
+    - "localhost"
+  allowed_binaries:
+    - "python3"
+    - "uv"
+
+gdpr:
+  cloud_region: "eu-west-2"
+  allowed_regions:
+    - "eu-west-1"
+    - "eu-west-2"
+    - "eu-central-1"
+  key_epoch: "2026-Q4"
+  retention_ttl_seconds: 86400
+  k_anonymity_threshold: 3
+  dp_epsilon: 0.8
+  blur_block_size: 8
+  ledger_file: "src_audit_ledger.jsonl"
+
+predeploy:
+  rate_limit_per_minute: 30
+  rate_limit_window_seconds: 60
+  password_reset_ttl_seconds: 1800
+  log_ring_buffer_capacity: 256
+  log_max_detail_length: 180
+  sqlite_db_path: "src_records.sqlite3"
+  active_deployment_slot: "blue"
+
+logging:
+  enabled: true
+  level: "INFO"
+
+server:
+  host: "127.0.0.1"
+  port: 8000
+  allowed_cors_origins:
+    - "http://localhost:3000"
+    - "http://127.0.0.1:8000"
+    - "http://10.0.2.2:8000"
+
+sandbox:
+  offline_fallback: true
+  azurite_endpoint: "http://127.0.0.1:10000"
+  gcs_endpoint: "http://127.0.0.1:4443"
+  synthetic_canvas_width: 800
+  synthetic_canvas_height: 600

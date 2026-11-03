@@ -7,7 +7,7 @@ flowchart TD
         A["Client Request (Multipart Image / REST API / UI)"]
     end
 
-    subgraph Edge_PreDeploy["Trust Boundary 1: 10-Point Pre-Deployment Gate (chandar/predeploy.py)"]
+    subgraph Edge_PreDeploy["Trust Boundary 1: 10-Point Pre-Deployment Gate (src/predeploy.py)"]
         B["Strict CORS Origin Allowlist Check"]
         C["Sliding-Window Rate Limiter (HTTP 429)"]
         D["SQLi / XSS Input Sanitizer (HTTP 400)"]
@@ -15,14 +15,14 @@ flowchart TD
         F["30-Min Single-Use Reset Token Gate (HTTP 410)"]
     end
 
-    subgraph Security_GDPR["Trust Boundary 2: OWASP ASVS & GDPR Privacy Engine (chandar/security.py & gdpr.py)"]
+    subgraph Security_GDPR["Trust Boundary 2: OWASP ASVS & GDPR Privacy Engine (src/security.py & gdpr.py)"]
         G["Path Canonicalization & Decompression Bomb Guard"]
         H["EXIF Metadata Stripper & Clean Pixel Buffer Clone"]
         I["Irreversible Block-Quantized Visual Blur on Sensitive ROIs"]
         J["HKDF-SHA256 Domain Pseudonymiser & H3 Spatial Anonymiser (U=0.0, Laplace DP)"]
     end
 
-    subgraph Pipeline_Core["Trust Boundary 3: Declarative Stage Registry & Bounded EFD Core (chandar/pipeline.py & fourier.py)"]
+    subgraph Pipeline_Core["Trust Boundary 3: Declarative Stage Registry & Bounded EFD Core (src/pipeline.py & fourier.py)"]
         K["Stage 1: Grayscale & Gaussian Smoothing"]
         L["Stage 2: Otsu Binary Inversion & Elliptical Morphology"]
         M["Stage 3: Connected-Component Labeling & Bounded Contour Extraction"]

@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  azurite_blob_sandbox:
+    image: mcr.microsoft.com/azure-storage/azurite:latest
+    container_name: src_azurite_sandbox
+    ports:
+      - "127.0.0.1:10000:10000"
+    command: "azurite-blob --blobHost 0.0.0.0 --blobPort 10000 --skipApiVersionCheck"
+    restart: unless-stopped
+
+  fake_gcs_sandbox:
+    image: fsouza/fake-gcs-server:latest
+    container_name: src_gcs_sandbox
+    ports:
+      - "127.0.0.1:4443:4443"
+    command: "-scheme http -port 4443 -backend memory"
+    restart: unless-stopped
